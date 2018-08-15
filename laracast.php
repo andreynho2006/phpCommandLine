@@ -14,5 +14,6 @@ require 'vendor/autoload.php';
 $app = new Application('Laracast Demo', '1.0');
 
 $app->add(new SayHelloCommand);
+$app->add(new Acme\RenderCommand);
 
 $app->run();
