@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class SayHelloCommand extends Command 
 {
@@ -13,12 +14,13 @@ class SayHelloCommand extends Command
     {
         $this->setName("sayHelloTo")
              ->setDescription("Offer a greeting to the giving person")
-             ->addArgument("name", InputArgument::REQUIRED, 'Your name');
+             ->addArgument("name", InputArgument::REQUIRED, 'Your name')
+             ->addOption("greeting", null, InputOption::VALUE_OPTIONAL, "Override the default greeting", "Hello");
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $message  = 'Hello, ' . $input->getargument('name');
+        $message  = sprintf('%s, %s', $input->getOption("greeting"), $input->getArgument("name"));
 
         $output->writeln("<info>{$message}</info>");
     }
