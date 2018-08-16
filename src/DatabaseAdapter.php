@@ -1,5 +1,7 @@
 <?php
+namespace Acme;
 
+use PDO;
 
 class DatabaseAdapter {
 
@@ -19,7 +21,7 @@ class DatabaseAdapter {
 
     }
 
-    public function sql($sql, $parameters)
+    public function query($sql, $parameters)
     {
 
         return $this->connection->prepare($sql)->execute($parameters);
