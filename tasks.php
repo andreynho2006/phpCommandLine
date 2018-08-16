@@ -38,4 +38,7 @@ $app->add(new Acme\ShowCommand($dbadapter));
 //pass adapter to add command
 $app->add(new Acme\AddCommand($dbadapter));
 
+//pass adapter to add command
+$app->add(new Acme\CompleteCommand($dbadapter));
+
 $app->run();
