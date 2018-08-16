@@ -20,4 +20,18 @@ class Command extends SymfonyCommand
 
         parent::__construct();
     }
+
+    public function showTasks($output)
+    {
+        if ( ! $tasks = $this->database->fetchAll('tasks'))
+        {
+            return $output->writeln('<info>No tasks at this moment!</info>');
+        }
+
+        $table = new Table($output);
+
+        $table->setHeaders(['Id', 'Description'])
+              ->setRows($tasks)
+              ->render();
+    }
 }
